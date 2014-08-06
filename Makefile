@@ -3,7 +3,6 @@
 ##########################################################################
 
 TARGET:=main
-TOOLCHAIN_PATH:=~/Development/sat/bin
 TOOLCHAIN_PREFIX:=arm-none-eabi
 OPTLVL:=3 # Optimization level, can be [0, 1, 2, 3, s].
 
@@ -31,7 +30,6 @@ ASRC=startup_stm32f4xx.s
 
 
 
-
 # Standard Peripheral Source Files
 SRC+=$(wildcard $(CURDIR)/*.c)
 SRC+=$(wildcard $(CURDIR)/lib/src/*.c)
@@ -55,16 +53,16 @@ LDFLAGS=$(COMMONFLAGS) -fno-exceptions -ffunction-sections -fdata-sections \
 
 OBJ = $(SRC:%.c=%.o) $(ASRC:%.s=%.o)
 
-CC=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)-gcc
-LD=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)-gcc
-OBJCOPY=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)-objcopy
-AS=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)-as
-AR=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)-ar
-GDB=$(TOOLCHAIN_PATH)/$(TOOLCHAIN_PREFIX)-gdb
+CC=$(TOOLCHAIN_PREFIX)-gcc
+LD=$(TOOLCHAIN_PREFIX)-gcc
+OBJCOPY=$(TOOLCHAIN_PREFIX)-objcopy
+AS=$(TOOLCHAIN_PREFIX)-as
+AR=$(TOOLCHAIN_PREFIX)-ar
+GDB=$(TOOLCHAIN_PREFIX)-gdb
 
 
 bin: $(OBJ)
-	$(CC) -o $(TARGET).elf $(LDFLAGS) $(OBJ)	$(LDLIBS)
+	$(CC) -o $(TARGET).elf $(OBJ) $(LDFLAGS) $(LDLIBS)
 	$(OBJCOPY) -O ihex   $(TARGET).elf $(TARGET).hex
 	$(OBJCOPY) -O binary $(TARGET).elf $(TARGET).bin
 
