@@ -27,11 +27,9 @@ vpath %.s $(STARTUP)
 ASRC=startup_stm32f4xx.s
 
 # Project Source Files
-
-
+SRC+=$(wildcard $(CURDIR)/*.c)
 
 # Standard Peripheral Source Files
-SRC+=$(wildcard $(CURDIR)/*.c)
 SRC+=$(wildcard $(CURDIR)/lib/src/*.c)
 
 
