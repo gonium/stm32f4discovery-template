@@ -59,3 +59,10 @@ USART Port Mappings
   UART6 should be mapped to the serial port of this board. However, I
   wasn't able to get this running. Attaching an FTDI USB-TTL-Adapter works fine for these pins.
 
+Tested Host Systems
+-------------------
+
+The template has been tested on the following host systems:
+
+* Ubuntu Linux 14.04
+* Mac OS Mavericks
