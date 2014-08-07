@@ -57,5 +57,5 @@ USART Port Mappings
 * USART1: PB6, PB7
 * USART6: PC6, PC7 Note: If you use the STM32F4 Expansion board, the
   UART6 should be mapped to the serial port of this board. However, I
-  wasn't able to get this running.
+  wasn't able to get this running. Attaching an FTDI USB-TTL-Adapter works fine for these pins.
 
