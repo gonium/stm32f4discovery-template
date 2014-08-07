@@ -1,9 +1,9 @@
 #include <stm32f4xx.h>
-#include <misc.h>			 // I recommend you have a look at these in the ST firmware folder
-#include <stm32f4xx_usart.h> // under Libraries/STM32F4xx_StdPeriph_Driver/inc and src
+#include <misc.h>
+#include <stm32f4xx_usart.h>
 
 #define MAX_STRLEN 12 // this is the maximum string length of our string in characters
-volatile char received_string[MAX_STRLEN+1]; // this will hold the recieved string
+volatile char received_string[MAX_STRLEN+1]; // this will hold the received string
 
 void Delay(__IO uint32_t nCount) {
   while(nCount--) {
@@ -92,15 +92,10 @@ void init_USART1(uint32_t baudrate){
  * It takes two arguments: USARTx --> can be any of the USARTs e.g. USART1, USART2 etc.
  * 						   (volatile) char *s is the string you want to send
  * 
- * Note: The string has to be passed to the function as a pointer because
- * 		 the compiler doesn't know the 'string' data type. In standard
- * 		 C a string is just an array of characters
- * 
  * Note 2: At the moment it takes a volatile char because the received_string variable
  * 		   declared as volatile char --> otherwise the compiler will spit out warnings
  * */
 void USART_puts(USART_TypeDef* USARTx, volatile char *s){
-
 	while(*s){
 		// wait until data register is empty
 		while( !(USARTx->SR & 0x00000040) ); 
@@ -111,9 +106,9 @@ void USART_puts(USART_TypeDef* USARTx, volatile char *s){
 
 int main(void) {
   
-  init_USART1(9600); // initialize USART1 @ 9600 baud
+  init_USART1(115200); // initialize USART1 @ 9600 baud
 
-  USART_puts(USART1, "Init complete! Hello World!\r\n"); // just send a message to indicate that it works
+  USART_puts(USART1, "Hello World!\r\n"); // just send a message to indicate that it works
 
   while (1){  
     /*
@@ -124,13 +119,10 @@ int main(void) {
 
 // this is the interrupt request handler (IRQ) for ALL USART1 interrupts
 void USART1_IRQHandler(void){
-	
 	// check if the USART1 receive interrupt flag was set
 	if( USART_GetITStatus(USART1, USART_IT_RXNE) ){
-		
 		static uint8_t cnt = 0; // this counter is used to determine the string length
 		char t = USART1->DR; // the character from the USART1 data register is saved in t
-		
 		/* check if the received character is not the LF character (used to determine end of string) 
 		 * or the if the maximum string length has been been reached 
 		 */
@@ -141,6 +133,7 @@ void USART1_IRQHandler(void){
 		else{ // otherwise reset the character counter and print the received string
 			cnt = 0;
 			USART_puts(USART1, received_string);
+			USART_puts(USART1, "\r\n");
 		}
 	}
 }

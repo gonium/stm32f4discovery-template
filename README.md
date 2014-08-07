@@ -8,7 +8,7 @@ Prerequisites
 
 * Install [gcc-arm-embedded](https://launchpad.net/gcc-arm-embedded) and
   make sure the arm-none-eabi-*-commands are in your path
-* Install [st-link](https://github.com/texane/st-link
+* Install [st-link](https://github.com/texane/st-link)
 
 Usage
 -----
@@ -47,6 +47,6 @@ Then, use the arm-none-eabi-gdb to load the ELF:
 
 The template code should now be running. Connect a UART-USB-Adapter to PB6, PB7 and GND. 
 
-	$ screen /dev/ttyUSB0 9600
+	$ screen /dev/ttyUSB0 115200
 
 should show a greeting message and react to your keyboard input.

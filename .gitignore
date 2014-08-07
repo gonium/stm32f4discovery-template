@@ -1,4 +1,5 @@
 .DS_Store
 *.elf
 *.bin
+*.hex
 *.o
