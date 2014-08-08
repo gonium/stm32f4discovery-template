@@ -4,7 +4,7 @@
 
 TARGET:=main
 TOOLCHAIN_PREFIX:=arm-none-eabi
-OPTLVL:=3 # Optimization level, can be [0, 1, 2, 3, s].
+OPTLVL:=1 # Optimization level, can be [0, 1, 2, 3, s].
 
 PROJECT_NAME:=$(notdir $(lastword $(CURDIR)))
 
