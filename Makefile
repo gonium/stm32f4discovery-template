@@ -24,7 +24,7 @@ INCLUDE+=-I$(CURDIR)/lib/cmsis
 vpath %.c $(CURDIR)/lib/src
 vpath %.s $(STARTUP)
 
-ASRC=startup_stm32f4xx.s
+ASRC=src/startup_stm32f4xx.s
 
 # Project Source Files
 SRC+=$(wildcard $(CURDIR)/*.c)
@@ -32,6 +32,8 @@ SRC+=$(wildcard $(CURDIR)/*.c)
 # Standard Peripheral Source Files
 SRC+=$(wildcard $(CURDIR)/lib/src/*.c)
 
+# Application files
+SRC+=$(wildcard $(CURDIR)/src/*.c)
 
 CDEFS=-DSTM32F4XX
 CDEFS+=-DUSE_STDPERIPH_DRIVER
@@ -39,7 +41,7 @@ CDEFS+=-DUSE_STDPERIPH_DRIVER
 MCUFLAGS=-mcpu=cortex-m4 -mthumb -std=c99
 #MCUFLAGS=-mcpu=cortex-m4 -mthumb -mlittle-endian -mfpu=fpa -mfloat-abi=hard -mthumb-interwork
 #MCUFLAGS=-mcpu=cortex-m4 -mfpu=vfpv4-sp-d16 -mfloat-abi=hard
-COMMONFLAGS=-O$(OPTLVL) -g -Wall
+COMMONFLAGS=-O$(OPTLVL) -g -Wall 
 CFLAGS=$(COMMONFLAGS) $(MCUFLAGS) $(INCLUDE) $(CDEFS)
 
 LDLIBS=

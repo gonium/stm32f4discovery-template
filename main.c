@@ -1,6 +1,7 @@
 #include <stm32f4xx.h>
 #include <misc.h>
 #include "usart.h"
+#include "mini-printf.h"
 
 #define MAX_STRLEN 12 // this is the maximum string length of our string in characters
 volatile char received_string[MAX_STRLEN+1]; // this will hold the received string
@@ -11,12 +12,14 @@ void Delay(__IO uint32_t nCount) {
 }
 
 int main(void) {
-  init_USART1(9600); 
+  init_USART1(115200); 
 
-	if (1) ;;
-  USART_puts(USART1, "Hello 1World!\r\n"); // just send a message to indicate that it works
-
-	if (1) ;;
+  USART_puts(USART1, "Startup complete.\r\n"); // just send a message to indicate that it works
+	USART_puts(USART1, "System Core Clock running at ");
+	char buffer[12];
+	snprintf(buffer, 12, "%d", SystemCoreClock/(1000*1000));
+	USART_puts(USART1, buffer);
+	USART_puts(USART1, "MHz\r\n");
 
   while (1){
     /*

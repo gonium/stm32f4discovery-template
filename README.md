@@ -1,7 +1,13 @@
-Project template for stm32f4-discovery boards
+Project template for STM32F4-Discovery Boards
 =============================================
 
-Based on template of [Florian Zahn](https://github.com/C3MA/stm32f4discovery-template) and extended with the USART example code from [devtrash](https://github.com/devthrash/STM32F4-examples/tree/master/USART)
+This is a simple bare-metal project template for the STM32F4 Discovery board.
+It contains the STM32F4 standard peripherals library and ARMs CMSIS package
+as well as some helper routines. It is based on:
+
+* [Template of Florian Zahn](https://github.com/C3MA/stm32f4discovery-template): CMSIS/StdLib, Makefile
+* [USART example code of devtrash](https://github.com/devthrash/STM32F4-examples/tree/master/USART)
+* [mini-printf code of mludvig](https://github.com/mludvig/mini-printf)
 
 Prerequisites
 -------------
@@ -49,7 +55,12 @@ The template code should now be running. Connect a UART-USB-Adapter to PB6, PB7 
 
 	$ screen /dev/ttyUSB0 115200
 
-should show a greeting message and react to your keyboard input.
+should show a greeting message:
+
+````
+Startup complete.
+System Core Clock running at 168MHz
+````
 
 USART Port Mappings
 -------------------
